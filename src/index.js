@@ -17,6 +17,19 @@ app.get('/api/v1/users', async (req, res) => {
     res.send(users);
 });
 
+app.use((req, res) =>
+    res
+        .status(404)
+        .json({ message: `Cannot ${req.method} API ${req.originalUrl}` })
+);
+
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res
+        .status(500)
+        .json({ message: 'Something broke!' })
+})
+
 app.listen(config.server.port, () =>
     console.log(`Example app listening on port ${config.server.port}!`),
 );
