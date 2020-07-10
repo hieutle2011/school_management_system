@@ -1,0 +1,24 @@
+{
+  "name": "school_management_system",
+  "version": "1.0.0",
+  "description": "BE coding test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hieutle2011/school_management_system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hieutle2011/school_management_system/issues"
+  },
+  "homepage": "https://github.com/hieutle2011/school_management_system#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
