@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('./index')
 const config = require('../config')
+const userModel = require('../db').user;
 
 async function authenticate({ username, password }) {
     try {
@@ -31,9 +32,9 @@ async function login(req, res, next) {
 
 }
 
-async function getAll(req, res) {
+async function getAll(req, res, next) {
     try {
-        const users = await User.findAll()
+        const users = await userModel.findAll()
         res.send(users);
     } catch (error) {
         next(error)
