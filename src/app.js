@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require("cors");
 const { authorize, errorHandler } = require('./middleware')
-const { getAll, login } = require('./users/handler')
+const userHandler = require('./users/handler')
+const schoolHandler = require('./school/handler')
 const { role } = require('./helper')
 
 const app = express();
@@ -14,8 +15,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.post('/api/v1/login', login)
-app.get('/api/v1/users', authorize(role.Admin), getAll);
+app.post('/api/v1/login', userHandler.login);
+app.get('/api/v1/users', authorize(role.Admin), userHandler.getAll);
+
+app.get('/api/v1/schools', authorize(role.Admin), schoolHandler.getAll);
 
 app.use((req, res) =>
     res
