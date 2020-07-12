@@ -33,12 +33,9 @@ module.exports = (sequelize, DataTypes) => {
             version: true,
         }
     );
-    // event.associate = function (models) {
-    //     event.belongsTo(models.event_type, {
-    //         as: "eventType",
-    //         foreignKey: "eventTypeNo",
-    //         targetKey: "id",
-    //     });
-    // };
+    User.associate = function (models) {
+        User.hasMany(models.school);
+    };
+
     return User;
 };
