@@ -50,11 +50,8 @@ async function getUser(req, res, next) {
         const user = await userModel.findOne({
             where: { id },
             include: [
-                {
-                    model: schoolModel,
-                    required: true,
-                    as: "schools",
-                }
+                { model: schoolModel },
+                { model: classModel, }
             ],
         });
         // TODO: NOT FOUND
