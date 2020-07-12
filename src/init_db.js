@@ -1,6 +1,7 @@
 const userModel = require('./db').user;
 const schoolModel = require('./db').school;
 const classModel = require('./db').classroom;
+const childModel = require('./db').child;
 
 const { role, status } = require('./helper');
 
@@ -16,8 +17,13 @@ const school_data = [
 ];
 
 const class_data = [
-    { name: 'A1', year: 2020, teacherId: 1, schoolId: 1},
-    { name: 'A2', year: 2020, teacherId: 1, schoolId: 2},
+    { name: 'A1', year: 2020, teacherId: 1, schoolId: 1 },
+    { name: 'A2', year: 2020, teacherId: 1, schoolId: 2 },
+]
+
+const child_data = [
+    { name: 'Jr John' },
+    { name: 'Jr Frank' },
 ]
 
 async function initDB() {
@@ -26,6 +32,7 @@ async function initDB() {
     await userModel.bulkCreate(user_data)
     await schoolModel.bulkCreate(school_data)
     await classModel.bulkCreate(class_data)
+    await childModel.bulkCreate(child_data)
 }
 
 module.exports = initDB;
