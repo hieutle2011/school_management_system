@@ -5,7 +5,7 @@ const config = require('./config');
 const initDB = require('./init_db');
 
 const server = http.createServer(app);
-db.sequelize.sync().then(async () => {
+db.sequelize.sync({force: true}).then(async () => {
     initDB();
     server.listen(config.server.port, err => {
         if (err) {
