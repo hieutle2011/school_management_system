@@ -20,6 +20,7 @@ app.post('/api/v1/login', userHandler.login);
 app.get('/api/v1/users', authorize(role.Admin), userHandler.getAll);
 app.get('/api/v1/users/:id', userHandler.getUser);
 app.get('/api/v1/users/:id/schools/:schoolId', userHandler.getSchool);
+app.get('/api/v1/users/:id/class', userHandler.getClass);
 
 app.get('/api/v1/schools', authorize(role.Admin), schoolHandler.getAll);
 

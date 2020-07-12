@@ -4,6 +4,7 @@ const Op = Sequelize.Op;
 const config = require('../config');
 const userModel = require('../db').user;
 const schoolModel = require('../db').school;
+const classModel = require('../db').classroom;
 
 async function authenticate({ username, password }) {
     try {
@@ -73,7 +74,33 @@ async function getSchool(req, res, next) {
                     model: schoolModel,
                     required: true,
                     as: "schools",
-                    where: { id: { [Op.in]: [schoolId] } }
+                    where: { id: { [Op.in]: [schoolId] } },
+                    include: [
+                        {
+                            model: classModel,
+                            required: true,
+                        }
+                    ],
+                }
+            ],
+        });
+        // TODO: NOT FOUND
+        res.send(user);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getClass(req, res, next) {
+    try {
+        const { id } = req.params;
+        const user = await userModel.findOne({
+            where: { id },
+            include: [
+                {
+                    model: classModel,
+                    required: true,
+                    // where: { id: { [Op.in]: [classId] } }
                 }
             ],
         });
@@ -90,4 +117,5 @@ module.exports = {
     login,
     getUser,
     getSchool,
+    getClass,
 }
