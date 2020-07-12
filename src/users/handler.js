@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const config = require('../config');
 const userModel = require('../db').user;
+const schoolModel = require('../db').school;
 
 async function authenticate({ username, password }) {
     try {
@@ -40,8 +43,51 @@ async function getAll(req, res, next) {
 
 }
 
+async function getUser(req, res, next) {
+    try {
+        const { id } = req.params;
+        const user = await userModel.findOne({
+            where: { id },
+            include: [
+                {
+                    model: schoolModel,
+                    required: true,
+                    as: "schools",
+                }
+            ],
+        });
+        // TODO: NOT FOUND
+        res.send(user);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getSchool(req, res, next) {
+    try {
+        const { id, schoolId } = req.params;
+        const user = await userModel.findAll({
+            where: { id },
+            include: [
+                {
+                    model: schoolModel,
+                    required: true,
+                    as: "schools",
+                    where: { id: { [Op.in]: [schoolId] } }
+                }
+            ],
+        });
+        // TODO: NOT FOUND
+        res.send(user);
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     authenticate,
     getAll,
     login,
+    getUser,
+    getSchool,
 }
