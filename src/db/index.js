@@ -26,6 +26,9 @@ db[users.name] = users;
 let school = sequelize.import('school', require('../school/model'));
 db[school.name] = school;
 
+let classroom = sequelize.import('classroom', require('../classroom/model'));
+db[classroom.name] = classroom;
+
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
