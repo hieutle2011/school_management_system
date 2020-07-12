@@ -2,6 +2,7 @@ const userModel = require('./db').user;
 const schoolModel = require('./db').school;
 const classModel = require('./db').classroom;
 const childModel = require('./db').child;
+const trackingModel = require('./db').tracking;
 
 const { role, status } = require('./helper');
 
@@ -26,6 +27,11 @@ const child_data = [
     { name: 'Jr Frank' },
 ]
 
+const tracking_data = [
+    { childId: 1, classroomId: 1 },
+    { childId: 2, classroomId: 1 },
+]
+
 async function initDB() {
     console.log('Initialize data')
 
@@ -33,6 +39,7 @@ async function initDB() {
     await schoolModel.bulkCreate(school_data)
     await classModel.bulkCreate(class_data)
     await childModel.bulkCreate(child_data)
+    await trackingModel.bulkCreate(tracking_data)
 }
 
 module.exports = initDB;

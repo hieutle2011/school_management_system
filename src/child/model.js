@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
             version: true,
         }
     );
+    Child.associate = function (models) {
+        Child.hasMany(models.tracking);
+    };
 
     return Child;
 };
