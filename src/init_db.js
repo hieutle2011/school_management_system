@@ -26,11 +26,15 @@ const class_data = [
 const child_data = [
     { name: 'Jr John' },
     { name: 'Jr Frank' },
+    { name: 'Jr Walter' },
+    { name: 'Jr Donald' },
 ]
 
 const tracking_data = [
     { childId: 1, classroomId: 1 },
     { childId: 2, classroomId: 1 },
+    { childId: 3, classroomId: 2 },
+    { childId: 4, classroomId: 2 },
 ]
 
 async function initDB() {
