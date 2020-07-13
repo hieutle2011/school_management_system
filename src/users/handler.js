@@ -7,22 +7,19 @@ const classModel = require('../db').classroom;
 const trackingModel = require('../db').tracking;
 
 async function authenticate({ username, password }) {
-    try {
-        const user = await userModel.findOne({ where: { username, password } });
-        if (user) {
-            const data = user.dataValues;
-            const token = 'Bearer ' + jwt.sign({ id: data.id, role: data.role }, config.jwt.secret);
-            const { password, ...userWithoutPassword } = data;
-            return {
-                ...userWithoutPassword,
-                token
-            };
-        }
-
-        return null
-    } catch (error) {
-        next(error)
+    const user = await userModel.findOne({ where: { username, password } });
+    if (user) {
+        const data = user.dataValues;
+        const token = 'Bearer ' + jwt.sign({ id: data.id, role: data.role }, config.jwt.secret);
+        const { password, ...userWithoutPassword } = data;
+        return {
+            ...userWithoutPassword,
+            token
+        };
     }
+
+    return null
+
 }
 
 async function login(req, res, next) {
