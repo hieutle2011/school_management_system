@@ -98,6 +98,7 @@ async function getTeacherClass(req, res, next) {
 
 async function getOwnerSchoolClass(req, res, next) {
     try {
+        const { format } = req.query;
         const { id, schoolId, classId } = req.params;
         const user = await userModel.findOne({
             where: { id },
@@ -119,8 +120,22 @@ async function getOwnerSchoolClass(req, res, next) {
                 }
             ],
         });
-        // TODO: NOT FOUND
-        res.send(user);
+
+        const data = user.get({ plain: true });
+
+        // Parse tracking data
+        let tracking = [];
+        data.schools.forEach((school) => {
+            school.classrooms.forEach((classroom) => {
+                tracking = [...tracking, ...classroom.trackings]
+            })
+        })
+
+        if (format && format === 'csv') {
+            csvExport(res, next, tracking, 'classroom')
+        } else {
+            res.send(user);
+        }
     } catch (error) {
         next(error);
     }
