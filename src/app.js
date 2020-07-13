@@ -24,7 +24,7 @@ app.get('/api/v1/schools', authorize(role.Admin), schoolHandler.getAll);
 app.get('/api/v1/users/:id/class', authorize(role.Teacher), userHandler.getTeacherClass);
 app.get('/api/v1/users/:id/class/:classId', authorize(role.Teacher), userHandler.getTeacherClass);
 app.get('/api/v1/users/:id/schools', authorize(role.HQ), userHandler.getOwnerSchools);
-app.get('/api/v1/users/:id/schools/:schoolId', authorize([role.Owner, role.HQ]), userHandler.getOwnerSchools);
+app.get('/api/v1/users/:id/schools/:schoolId', authorize([role.Owner, role.HQ]), userHandler.getOwnerSchoolClass);
 app.get('/api/v1/users/:id/schools/:schoolId/class/:classId', authorize([role.Owner, role.HQ]), userHandler.getOwnerSchoolClass);
 
 
