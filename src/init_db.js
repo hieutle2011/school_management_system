@@ -10,6 +10,7 @@ const user_data = [
     { username: 'Alice', password: 'pw', role: role.Teacher },
     { username: 'Bob', password: 'pw', role: role.Owner },
     { username: 'David', password: 'pw', role: role.Admin },
+    { username: 'Charles', password: 'pw', role: role.HQ },
 ];
 
 const school_data = [
