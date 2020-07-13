@@ -18,11 +18,15 @@ app.get('/', (req, res) => {
 app.post('/api/v1/login', userHandler.login);
 
 app.get('/api/v1/users', authorize(role.Admin), userHandler.getAll);
-app.get('/api/v1/users/:id', userHandler.getUser);
-app.get('/api/v1/users/:id/schools/:schoolId', userHandler.getSchool);
-app.get('/api/v1/users/:id/class', userHandler.getClass);
-
+app.get('/api/v1/users/:id', authorize(role.Admin), userHandler.getUser);
 app.get('/api/v1/schools', authorize(role.Admin), schoolHandler.getAll);
+
+app.get('/api/v1/users/:id/class', authorize(role.Teacher), userHandler.getTeacherClass);
+app.get('/api/v1/users/:id/class/:classId', authorize(role.Teacher), userHandler.getTeacherClass);
+app.get('/api/v1/users/:id/schools', authorize(role.Owner), userHandler.getOwnerSchools);
+app.get('/api/v1/users/:id/schools/:schoolId', authorize(role.Owner), userHandler.getOwnerSchools);
+app.get('/api/v1/users/:id/schools/:schoolId/class/:classId', authorize(role.Owner), userHandler.getOwnerSchoolClass);
+
 
 app.use((req, res) =>
     res
@@ -31,9 +35,5 @@ app.use((req, res) =>
 );
 
 app.use(errorHandler)
-
-// app.listen(config.server.port, () =>
-//     console.log(`Example app listening on port ${config.server.port}!`),
-// );
 
 module.exports = app;
