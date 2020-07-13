@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
 const config = require('../config');
 const userModel = require('../db').user;
 const schoolModel = require('../db').school;
 const classModel = require('../db').classroom;
+const trackingModel = require('../db').tracking;
 
 async function authenticate({ username, password }) {
     try {
@@ -61,21 +60,46 @@ async function getUser(req, res, next) {
     }
 }
 
-async function getSchool(req, res, next) {
+async function getTeacherClass(req, res, next) {
     try {
-        const { id, schoolId } = req.params;
-        const user = await userModel.findAll({
+        const { id, classId } = req.params;
+        const user = await userModel.findOne({
+            where: { id },
+            include: [
+                {
+                    model: classModel,
+                    where: classId? { id: classId } : null,
+                    include: [
+                        { model: trackingModel, }
+                    ]
+                }
+            ],
+        });
+        // TODO: NOT FOUND
+        res.send(user);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getOwnerSchoolClass(req, res, next) {
+    try {
+        const { id, schoolId, classId } = req.params;
+        const user = await userModel.findOne({
             where: { id },
             include: [
                 {
                     model: schoolModel,
-                    required: true,
-                    as: "schools",
-                    where: { id: { [Op.in]: [schoolId] } },
+                    where: { id: schoolId },
                     include: [
                         {
                             model: classModel,
-                            required: true,
+                            where: { id: classId },
+                            include: [
+                                {
+                                    model: trackingModel,
+                                }
+                            ],
                         }
                     ],
                 }
@@ -88,16 +112,25 @@ async function getSchool(req, res, next) {
     }
 }
 
-async function getClass(req, res, next) {
+async function getOwnerSchools(req, res, next) {
     try {
-        const { id } = req.params;
+        const { id, schoolId } = req.params;
         const user = await userModel.findOne({
             where: { id },
             include: [
                 {
-                    model: classModel,
-                    required: true,
-                    // where: { id: { [Op.in]: [classId] } }
+                    model: schoolModel,
+                    where: schoolId ? { id: schoolId } : null,
+                    include: [
+                        {
+                            model: classModel,
+                            include: [
+                                {
+                                    model: trackingModel,
+                                }
+                            ],
+                        }
+                    ],
                 }
             ],
         });
@@ -113,6 +146,7 @@ module.exports = {
     getAll,
     login,
     getUser,
-    getSchool,
-    getClass,
+    getTeacherClass,
+    getOwnerSchoolClass,
+    getOwnerSchools,
 }
