@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { csvExport } = require('../helper')
 const config = require('../config');
 const userModel = require('../db').user;
 const schoolModel = require('../db').school;
@@ -62,21 +63,34 @@ async function getUser(req, res, next) {
 
 async function getTeacherClass(req, res, next) {
     try {
+        const { format } = req.query;
         const { id, classId } = req.params;
         const user = await userModel.findOne({
             where: { id },
             include: [
                 {
                     model: classModel,
-                    where: classId? { id: classId } : null,
+                    where: classId ? { id: classId } : null,
+                    raw: true,
                     include: [
-                        { model: trackingModel, }
+                        { model: trackingModel, raw: true, }
                     ]
                 }
             ],
         });
+
+        const data = user.get({ plain: true });
+
+        // Parse tracking data
+        let tracking = [];
+        data.classrooms.forEach(classroom => tracking = [...tracking, ...classroom.trackings]);
+
         // TODO: NOT FOUND
-        res.send(user);
+        if (format && format === 'csv') {
+            csvExport(res, next, tracking, 'classroom')
+        } else {
+            res.send(user);
+        }
     } catch (error) {
         next(error);
     }
