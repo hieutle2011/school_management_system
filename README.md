@@ -1,14 +1,14 @@
 # school_management_system
 Back-end coding test for LittleLives.
 
-### Prerequisite:
+# Prerequisite:
 - Ubuntu / MacOS
 - Docker and Docker-compose installed
 - Postman (recommended) / curl
 
-### APIs:
+# APIs:
 
-#### Authentication
+## Authentication
 
 Each request must have token in the field Authorization in header.
 
@@ -22,7 +22,7 @@ For example:
 |Owner |Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Ik93bmVyIiwiaWF0IjoxNTk0MzY3ODM5fQ.OiBH9UcQlopA881T193sw0rEXkAc-3yRqCfnslcgvu8|
 |HQ |Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6IkhRIG93bmVyIiwiaWF0IjoxNTk0NjE0MzM1fQ.7Q6D72Xq7kFjPS21uXCPkntthGSHiDT_UBjbj4iDbHI|
 
-#### Tracking
+## Tracking
 
 - GET /api/v1/tracking/teacher
 - GET /api/v1/tracking/hq
@@ -30,7 +30,7 @@ For example:
 - GET /api/v1/tracking/owner
 - GET /api/v1/tracking/owner/class/:classId
 
-#### Format
+## Format
 Currently, 2 formats are supported
 - JSON (default)
 - CSV
@@ -41,26 +41,26 @@ Specify the format by using format parameter.
 api/v1/tracking/teacher?format=csv
 ```
 
-### Database:
+# Database:
 - Postgres and [table diagram](https://dbdiagram.io/d/5f0d61300425da461f04a304)
 - Fake data is loaded into tables when service starts. More detail at file **/src/init_db.js**
 
-### Dependencies:
+# Dependencies:
 - expressjs as backend framework
 - fast-csv to manipulate csv
 - jsonwebtoken and express-jwt to create and validate token
 - pg and pg-hstore to connect postgres database
 - sequelize as a object relational mapping
 
-### Areas for Improvement:
+# Areas for Improvement:
 - Add unitest, integration test, ...
 - Add password hashing
 - Add Create - Update - Delete operations
 
-### How to Run
+# How to Run
 *Note: Below steps for Ubuntu machine.*
 
-#### Start server
+## Start server
 
 Clone the repository, change to project root folder and run command
 
@@ -87,11 +87,11 @@ app_1       | Initialize data
 app_1       | Server is listening on port 3000
 ```
 
-#### Request with Postman
+## Request with Postman
 
 Run Postman and import collection from file **postman.json** in root folder. You can make request in the collection.
 
-#### Request with curl (Optional)
+## Request with curl (Optional)
 
 - As a teacher
 ```
