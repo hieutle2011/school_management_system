@@ -1,4 +1,4 @@
-# school_management_system
+# School Management System
 Back-end coding test for LittleLives.
 
 # Prerequisite:
@@ -56,6 +56,8 @@ api/v1/tracking/teacher?format=csv
 - Add unitest, integration test, ...
 - Add password hashing
 - Add Create - Update - Delete operations
+- Using log module (eg. winston) instead of console.log
+- Seperate dev and prod environment
 
 # How to Run
 *Note: Below steps for Ubuntu machine.*
