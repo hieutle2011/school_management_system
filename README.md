@@ -1,7 +1,7 @@
 # school_management_system
-Back-end coding test for Little Lives.
+Back-end coding test for LittleLives.
 
-### Prerequisis:
+### Prerequisite:
 - Ubuntu / MacOS
 - Docker and Docker-compose installed
 - Postman (recommended) / curl
@@ -42,13 +42,20 @@ api/v1/tracking/teacher?format=csv
 ```
 
 ### Database:
-- Postgres [table](https://dbdiagram.io/d/5f0d61300425da461f04a304)
+- Postgres and [table diagram](https://dbdiagram.io/d/5f0d61300425da461f04a304)
 - Fake data is loaded into tables when service starts. More detail at file **/src/init_db.js**
+
+### Dependencies:
+- expressjs as backend framework
+- fast-csv to manipulate csv
+- jsonwebtoken and express-jwt to create and validate token
+- pg and pg-hstore to connect postgres database
+- sequelize as a object relational mapping
 
 ### Areas for Improvement:
 - Add unitest, integration test, ...
 - Add password hashing
-- Add Create - Update - Delete operation
+- Add Create - Update - Delete operations
 
 ### How to Run
 *Note: Below steps for Ubuntu machine.*
