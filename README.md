@@ -68,6 +68,9 @@ Clone the repository, change to project root folder and run command
 # Change directory to root folder
 cd school_management_system/
 
+# Install dependencies
+npm i
+
 # Start services
 docker-compose up --build
 ```
