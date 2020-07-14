@@ -24,7 +24,8 @@ async function getAllTeacherClassTracking(req, res, next) {
                 {
                     model: childModel,
                 }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         });
 
         if (!trackings) return res.status(400).json({ message: 'Data not found' });
@@ -60,7 +61,8 @@ async function getAllHQClassTracking(req, res, next) {
                 {
                     model: childModel,
                 }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         });
 
         if (!trackings) return res.status(400).json({ message: 'Data not found' });
@@ -96,7 +98,8 @@ async function getAllOwnerClassTracking(req, res, next) {
                 {
                     model: childModel,
                 }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         });
 
         if (!trackings) return res.status(400).json({ message: 'Data not found' });
