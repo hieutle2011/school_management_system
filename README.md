@@ -43,7 +43,7 @@ api/v1/tracking/teacher?format=csv
 
 ### Database:
 - Postgres [table](https://dbdiagram.io/d/5f0d61300425da461f04a304)
-- Fake data is loaded into tables when service starts.
+- Fake data is loaded into tables when service starts. More detail at file **/src/init_db.js**
 
 ### Areas for Improvement:
 - Add unitest, integration test, ...
@@ -80,9 +80,9 @@ app_1       | Initialize data
 app_1       | Server is listening on port 3000
 ```
 
-#### Start Postman
+#### Request with Postman
 
-Run Postman and import collection from file **postman.json** in root folder.
+Run Postman and import collection from file **postman.json** in root folder. You can make request in the collection.
 
 #### Request with curl (Optional)
 
