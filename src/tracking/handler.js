@@ -27,6 +27,8 @@ async function getAllTeacherClassTracking(req, res, next) {
             ]
         });
 
+        if (!trackings) return res.status(400).json({ message: 'Data not found' });
+
         if (format && format === 'csv') {
             csvExport(res, next, makeBodyCSV(trackings), 'teacher_class_tracking')
         } else {
@@ -61,6 +63,8 @@ async function getAllHQClassTracking(req, res, next) {
             ]
         });
 
+        if (!trackings) return res.status(400).json({ message: 'Data not found' });
+
         if (format && format === 'csv') {
             csvExport(res, next, makeBodyCSV(trackings), 'school_tracking')
         } else {
@@ -94,6 +98,8 @@ async function getAllOwnerClassTracking(req, res, next) {
                 }
             ]
         });
+
+        if (!trackings) return res.status(400).json({ message: 'Data not found' });
 
         if (format && format === 'csv') {
             csvExport(res, next, makeBodyCSV(trackings), 'class_tracking')

@@ -50,8 +50,7 @@ async function getUser(req, res, next) {
                 { model: classModel, }
             ],
         });
-        // TODO: NOT FOUND
-        res.send(user);
+        user ? res.send(user) : res.status(400).json({ message: 'Data not found' });
     } catch (error) {
         next(error);
     }
