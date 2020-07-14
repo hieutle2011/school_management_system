@@ -1,8 +1,7 @@
-
 const jwt = require('express-jwt');
 const config = require('../config');
 
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res, _next) {
     console.error(err.stack)
     if (typeof (err) === 'string') {
         return res.status(400).json({ message: err });
