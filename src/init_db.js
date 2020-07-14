@@ -15,7 +15,7 @@ const user_data = [
 
 const school_data = [
     { name: 'CFVG', paymentType: status.Free, ownerId: 2 },
-    { name: 'NEU', paymentType: status.Paid, ownerId: 2 },
+    { name: 'NEU', paymentType: status.Paid, ownerId: 4 },
 ];
 
 const class_data = [

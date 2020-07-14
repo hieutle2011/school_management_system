@@ -25,6 +25,8 @@ app.get('/api/v1/schools/all', authorize(role.Admin), schoolHandler.getAll);
 app.get('/api/v1/tracking/teacher', authorize(role.Teacher), trackingHandler.getAllTeacherClassTracking);
 app.get('/api/v1/tracking/hq', authorize(role.HQ), trackingHandler.getAllHQClassTracking);
 app.get('/api/v1/tracking/hq/school/:schoolId', authorize(role.HQ), trackingHandler.getAllHQClassTracking);
+app.get('/api/v1/tracking/owner', authorize([role.HQ, role.Owner]), trackingHandler.getAllOwnerClassTracking);
+app.get('/api/v1/tracking/owner/class/:classId', authorize([role.HQ, role.Owner]), trackingHandler.getAllOwnerClassTracking);
 
 app.get('/api/v1/class', authorize(role.Teacher), userHandler.getTeacherClass);
 app.get('/api/v1/class/:classId', authorize(role.Teacher), userHandler.getTeacherClass);
