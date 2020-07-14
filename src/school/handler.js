@@ -1,4 +1,3 @@
-const config = require('../config');
 const schoolModel = require('../db').school;
 
 async function getAll(req, res, next) {
