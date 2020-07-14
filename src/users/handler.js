@@ -38,7 +38,6 @@ async function getAll(req, res, next) {
     } catch (error) {
         next(error);
     }
-
 }
 
 async function getUser(req, res, next) {
@@ -119,6 +118,8 @@ async function getOwnerSchoolClass(req, res, next) {
                 }
             ],
         });
+
+        if (!user) return res.status(404).send({'message': 'NOT FOUND'})
 
         const data = user.get({ plain: true });
 
