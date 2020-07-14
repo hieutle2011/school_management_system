@@ -43,14 +43,14 @@ api/v1/tracking/teacher?format=csv
 
 ## Database:
 - Postgres and [table diagram](https://dbdiagram.io/d/5f0d61300425da461f04a304)
-- Fake data is loaded into tables when service starts. More detail at file **/src/init_db.js**
+- Fake data is loaded into tables when service starts. More detail at file [**/src/init_db.js**][init]
 
 ## Dependencies:
-- expressjs as backend framework
-- fast-csv to manipulate csv
-- jsonwebtoken and express-jwt to create and validate token
-- pg and pg-hstore to connect postgres database
-- sequelize as a object relational mapping
+- *expressjs* as backend framework
+- *fast*-csv to manipulate csv
+- *jsonwebtoken* and *express-jwt* to create and validate token
+- *pg* and *pg-hstore* to connect postgres database
+- *sequelize* as a object relational mapping
 
 ## Areas for Improvement:
 - Add unitest, integration test, ...
@@ -59,14 +59,14 @@ api/v1/tracking/teacher?format=csv
 - Using log module (eg. winston) instead of console.log
 - Seperate dev and prod environment
 
-## How to Run
+## Usage
 *Note: Below steps for Ubuntu machine.*
 
 ### Start server
 
 Clone the repository, change to project root folder and run command
 
-```
+``` bash
 ## Change directory to root folder
 cd school_management_system/
 
@@ -75,7 +75,7 @@ docker-compose up --build
 ```
 Now we can access the server at localhost port 3000
 
-```
+``` bash
 app_1       | 
 app_1       | > school_management_system@1.0.0 dev /usr/src/app
 app_1       | > nodemon -L src/index.js
@@ -96,30 +96,32 @@ Run Postman and import collection from file **postman.json** in root folder. You
 ### Request with curl (Optional)
 
 - As a teacher
-```
+``` bash
 curl --location --request GET 'http://localhost:3000/api/v1/tracking/teacher?format=csv' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IlRlYWNoZXIiLCJpYXQiOjE1OTQzNjc2NTB9.bKTbyzoUmm_oXTGH4FI0DztSXtqk9eR6dLg9p_5wYZE'
 ```
 
 - As a HQ owner (Paid)
-```
+``` bash
 curl --location --request GET 'http://localhost:3000/api/v1/tracking/hq?format=csv' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6IkhRIG93bmVyIiwiaWF0IjoxNTk0NjE0MzM1fQ.7Q6D72Xq7kFjPS21uXCPkntthGSHiDT_UBjbj4iDbHI'
 ```
 - As a HQ owner (Free)
-```
+``` bash
 curl --location --request GET 'http://localhost:3000/api/v1/tracking/hq/school/2?format=csv' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6IkhRIG93bmVyIiwiaWF0IjoxNTk0NjE0MzM1fQ.7Q6D72Xq7kFjPS21uXCPkntthGSHiDT_UBjbj4iDbHI'
 ```
 
 - As an Owner (Paid)
-```
+``` bash
 curl --location --request GET 'http://localhost:3000/api/v1/tracking/owner?format=csv' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Ik93bmVyIiwiaWF0IjoxNTk0MzY3ODM5fQ.OiBH9UcQlopA881T193sw0rEXkAc-3yRqCfnslcgvu8'
 ```
 
 - As an Owner (Free)
-```
+``` bash
 curl --location --request GET 'http://localhost:3000/api/v1/tracking/owner/class/1?format=csv' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Ik93bmVyIiwiaWF0IjoxNTk0MzY3ODM5fQ.OiBH9UcQlopA881T193sw0rEXkAc-3yRqCfnslcgvu8'
 ```
+
+[init]: https://github.com/hieutle2011/school_management_system/blob/master/src/init_db.js
