@@ -124,4 +124,10 @@ curl --location --request GET 'http://localhost:3000/api/v1/tracking/owner/class
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Ik93bmVyIiwiaWF0IjoxNTk0MzY3ODM5fQ.OiBH9UcQlopA881T193sw0rEXkAc-3yRqCfnslcgvu8'
 ```
 
+### Integration test
+
+``` bash
+docker-compose -f docker-compose.yaml -f docker-compose.test.yaml up --build
+```
+
 [init]: https://github.com/hieutle2011/school_management_system/blob/master/src/init_db.js
