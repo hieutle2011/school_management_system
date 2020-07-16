@@ -17,14 +17,15 @@ services:
     command: npm run dev
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - app_node_modules:/usr/src/app/node_modules
 
   db:
     image: postgres:12
     restart: always
-    ports:
-      - "35432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: db
+
+volumes:
+  app_node_modules:

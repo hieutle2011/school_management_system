@@ -19,5 +19,8 @@ COPY --from=builder node_modules node_modules
 
 COPY . .
 
+# add bash for run test script
+RUN chmod +x *.sh && apk update && apk add bash
+
 EXPOSE 8080
 CMD [ "node", "src/index.js" ]
